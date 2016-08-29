@@ -30,7 +30,7 @@ Hard-coded routes like `/about`, `/home`, and `/contact` will only take a websit
 - Distinguish between JavaScript, Node.js, npm, and Express.
 
 
-### Review: Creating an Example App
+### Review: Creating an App
 
 #### 1. Directory and File Setup
 
@@ -122,6 +122,7 @@ app.get("/", function(request, response) {
   response.send('Hello World');
 });
 ```
+</details>
 
 
 #### 3. Starter Routes
@@ -142,8 +143,8 @@ Let's build two more routes into our application:
 | `GET` | `/api/tacos` | `Soft Taco`, `Crunchy Taco`, `Super Taco` |
 
 
+<details><summary> click to see contents of `server.js`</summary>
 
-`server.js`
 ```js
 // REQUIREMENTS
 var express = require('express'),
@@ -183,6 +184,7 @@ app.listen(3000, function () {
 });
 
 ```
+</details>
 
 ### Parameterized URLs
 
@@ -320,15 +322,18 @@ app.post('/cities', function citiesCreate(request, response) {
 });
 ```
 
-### RESTful Routing
+### RESTful Routing Preview
 
-Let's look at some routes for a cities **resource**.  
+Let's look at _some_ routes for a cities **resource**.  
 
 | HTTP Verb | Route       | RESTful description | Purpose |
 | :-------- | ----------- | ------------------- | --------------------|
 | GET       | /api/cities     | citiesIndex         | Listing all cities. |
 | GET       | /api/cities/:id | citiesShow          | Details of one city. |
-| POST      | /api/cities     | citiesCreate        | Create a new city.
+| POST      | /api/cities     | citiesCreate        | Create a new city. |
+| PUT/PATCH  | /api/cities/:id     | citiesUpdate         | Update one city. |
+| DELETE       | /api/cities/:id | citiesDestroy          | Delete one city. |
+
 
 **REST** is a convention for writing routes in a standard way to make it easier to work with **resources** across the web.  We'll talk more about this, as it's an important theme in modern API design.
 
@@ -386,7 +391,7 @@ You can [read more about middleware here](middleware-reading.md).
 
 ### Closing Thoughts
 
-* Use dynamic url parameters, i.e. `/api/burgers/:index` and `/api/tacos/:index`, to request data about a specific resource. Access them on the server in the `request.params` object.
+* Use dynamic url parameters, like `/api/burgers/:index` and `/api/tacos/:index`, to request data about a specific resource. Access them on the server in the `request.params` object.
 * Use query string parameters for dynamic requests to serve up dynamic responses. Access them on the server in the `request.query` object.
 * Use `POST` with named form inputs to send data to our Express servers, and use `body-parser` to access that data as part of the `request.body` object.
 
