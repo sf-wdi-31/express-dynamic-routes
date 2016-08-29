@@ -490,8 +490,7 @@ We'll use `PUT` or `PATCH` to send data to update item information on the server
 
 ### Additional Resources
 
-0. [In-depth HTTP Intro](
-* [HTTP Intro](http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177)
+0. [In-depth HTTP Intro](http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177)
 1. [Starting an Express Project](http://expressjs.com/starter/installing.html)
 2. [Express Hello World](http://expressjs.com/starter/hello-world.html)
 3. [Express Basic Routing](http://expressjs.com/starter/basic-routing.html)
