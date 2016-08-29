@@ -202,6 +202,21 @@ In the route above, `:name` is considered a route or URL parameter. Inside the r
 | :--- | :--- | :--- |
 | `GET` | `/greet/:name` | `Hello, :name` |
 
+### Independent Practice: Pick A Color
+
+Create a route that responds with "You picked: blue" or "You picked: green" depending on a parameter in its path. For instance, if I visit `localhost:3000/pick-a-color/orange` in the browser, I should see the name of the color I chose (orange) as the response.
+
+<details><summary>click for answer</summary>
+```js
+// server.js
+// Pick A Color Route
+app.get('/color/:choice', function(request, response){
+  var choice = request.params.choice;
+  response.send('Your color is: ' + choice);
+});
+```
+</details>
+
 
 ### Query String Parameters
 
@@ -231,12 +246,18 @@ app.get("/thank", function (request, response) {
 
 #### Check for Understanding
 
-<details><summary>What URL would you visit to see the results of the route above? How can you make the site say thank you with your name?</summary>
+<details><summary>What URL would you visit to see the results of the route above? Can you make the site say thank you with your name?</summary>
 
 
 Reset your server and go to [localhost:3000/thank?name=jane](localhost:3000/thank?name=jane), but use your name instead if it's not Jane!
 </details>
 
+
+### Independent Practice: Calculator App
+
+1. Create a `/multiply` route that uses query parameters `x` and `y` to multiple two numbers and send the result back: `"10 is the result"`.
+
+2.  Create an `/add` route, similar to above.
 
 ### Choosing Parameter Types
 
@@ -260,6 +281,41 @@ Common cases for **Query Parameters**:
 * **other limits**         -  GET `/posts?since=2015-11-29`
 
 Of course, you might combine both in some cases: `/posts/33/comments?limit=50`
+
+### Independent Practice: Which Taco?
+
+1. Hardcode some data in your main server file. This will stand in for database data until we learn how to connect a database.
+
+``` javascript
+var tacos = [
+                "Soft Taco",
+                "Crunchy Taco",
+                "Super Taco"
+            ];
+```
+
+1. We'd like a route that will allow you to access a single taco by its index in the array. For example, sending index 2 would trigger a server response with the text "Super Taco".  What kind of parameters would be most appropriate for this route, query parameters or url parameters?
+
+<details><summary>click for answer</summary>
+Since we're identifying a single resource, it's best to use url parameters (aka route parameters).
+</details>
+
+1. Create the route you planned in your server file. Following the pattern from the example earlier, your endpoint should include `/api`.
+
+<details><summary>click for answer</summary>
+```js
+// server.js
+
+// Which Taco?
+app.get('/api/tacos/:id', function(request, response){
+  var index = request.params.id;
+  var selection = tacos[id] || 'Sorry, that\'s not a taco option';
+  response.json( selection );
+});
+
+```
+</details>
+
 
 ### POST
 
@@ -302,20 +358,20 @@ function handleCityCreateSuccess(responseData) {
   // render book to page
 }
 
-function handleErrorCityCreateError() {
-  console.error("uh oh... failed to create");
+function handleError(jqXHR, status, error){
+  console.log('error:', error);
 }
 ```
 
 #### Server-side `POST` Request Handling
 
-In our Express server, we'll use `app.post` rather than `app.get` to handle `POST` requests.  
+In our Express server, we'll use `app.post` rather than `app.get` to handle `POST` requests.  This way, we can make two routes that use the same path.
 
-In other words, **both the request-type and request-path must match**.
+In other words, **both the request type and request path must match for the server and client to communicate correctly**.
 
 ```js
 // server.js
-app.post('/cities', function citiesCreate(request, response) {
+app.post('/api/cities', function citiesCreate(request, response) {
   // save the posted data
 });
 ```
