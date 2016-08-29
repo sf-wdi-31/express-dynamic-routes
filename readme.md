@@ -262,7 +262,36 @@ Reset your server and go to [localhost:3000/thank?name=jane](localhost:3000/than
 
 1. Create a `/multiply` route that uses query parameters `x` and `y` to multiple two numbers and send the result back: `"10 is the result"`.
 
+
+  <details><summary>click for answer</summary>
+  ```js
+  // server.js
+  // Calculator
+  app.get('/multiply', function(request, response){
+    var x = request.query.x;
+    var y = request.query.y;
+    var total = x*y;
+    response.send( total + " is the result");
+  });
+  ```
+  </details>
+
+
 2.  Create an `/add` route, similar to above.
+
+
+  <details><summary>click for answer</summary>
+  ```js
+  // server.js
+  // Calculator
+  app.get('/add', function(request, response){
+    var x = request.query.x;
+    var y = request.query.y;
+    var total = x+y;
+    response.send( total + " is the result");
+  });
+  ```
+  </details>
 
 ### Choosing Parameter Types
 
